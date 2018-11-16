@@ -63,16 +63,14 @@ const element = wrapElement(template);
 
 const gameOptions = Array.from(element.querySelectorAll(`.game__option`));
 
-const gameContent = element.querySelector(`.game__content`);
+const gameForm = element.querySelector(`form`);
 
-gameContent.addEventListener(`click`, () => {
-  if (event.target.tagName === `INPUT`) {
-    const isTotalChecked = gameOptions.every((option) => {
-      return Array.from(option.querySelectorAll(`input`)).some((input) => input.checked);
-    });
-    if (isTotalChecked) {
-      renderScreen(secondGameBlock);
-    }
+gameForm.addEventListener(`change`, () => {
+  const isTotalChecked = gameOptions.every((option) => {
+    return Array.from(option.querySelectorAll(`input`)).some((input) => input.checked);
+  });
+  if (isTotalChecked) {
+    renderScreen(secondGameBlock);
   }
 });
 

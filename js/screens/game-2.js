@@ -50,10 +50,10 @@ const template = `<header class="header">
 
 const element = wrapElement(template);
 
-Array.from(element.querySelectorAll(`.game__answer`)).forEach((answer) => {
-  answer.addEventListener(`click`, () => {
-    renderScreen(thirdGameBlock);
-  });
+const gameForm = element.querySelector(`form`);
+
+gameForm.addEventListener(`change`, () => {
+  renderScreen(thirdGameBlock);
 });
 
 export default element;

@@ -38,7 +38,7 @@ rulesButton.addEventListener(`click`, () => {
 });
 
 const rulesInput = element.querySelector(`.rules__input`);
-rulesInput.addEventListener(`keyup`, () => {
+rulesInput.addEventListener(`keyup`, (event) => {
   if (event.target.value && rulesButton.hasAttribute(`disabled`)) {
     rulesButton.removeAttribute(`disabled`);
   }

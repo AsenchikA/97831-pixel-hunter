@@ -48,10 +48,12 @@ const template = `<header class="header">
 
 const element = wrapElement(template);
 
-Array.from(element.querySelectorAll(`.game__option`)).forEach((answer) => {
-  answer.addEventListener(`click`, () => {
+const gameForm = element.querySelector(`form`);
+
+gameForm.addEventListener(`click`, (event) => {
+  if (event.target.parentNode.classList.contains(`game__option`)) {
     renderScreen(statsBlock);
-  });
+  }
 });
 
 export default element;
