@@ -13,6 +13,8 @@ const imagemin = require(`gulp-imagemin`);
 const svgstore = require(`gulp-svgstore`);
 const rollup = require(`gulp-better-rollup`);
 const sourcemaps = require(`gulp-sourcemaps`);
+const mocha = require(`gulp-mocha`);
+const commonjs = require(`rollup-plugin-commonjs`);
 
 gulp.task(`style`, () => {
   return gulp.src(`sass/style.scss`).
@@ -39,11 +41,11 @@ gulp.task(`style`, () => {
 
 gulp.task(`sprite`, () => {
   return gulp.src(`img/sprite/*.svg`)
-  .pipe(svgstore({
-    inlineSvg: true
-  }))
-  .pipe(rename(`sprite.svg`))
-  .pipe(gulp.dest(`build/img`));
+    .pipe(svgstore({
+      inlineSvg: true
+    }))
+    .pipe(rename(`sprite.svg`))
+    .pipe(gulp.dest(`build/img`));
 });
 
 gulp.task(`scripts`, () => {
@@ -114,4 +116,15 @@ gulp.task(`build`, [`assemble`], () => {
 });
 
 gulp.task(`test`, () => {
+  return gulp
+  .src([`js/**/*.test.js`])
+  .pipe(rollup({
+    plugins: [
+      commonjs()
+    ]
+  }, `cjs`))
+  .pipe(gulp.dest(`build/test`))
+  .pipe(mocha({
+    reporter: `spec`
+  }));
 });
