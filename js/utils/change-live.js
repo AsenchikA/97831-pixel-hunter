@@ -1,18 +1,16 @@
-import {GameRules} from './game-constants.js';
+const changeNumberLives = (gameState, answer) => {
+  if (typeof answer !== `string`) {
+    throw new Error(`Answer should be of type string`);
+  }
+  if (gameState.lives <= 0) {
+    throw new Error(`Number of lives should not zero or less than zero`);
+  }
 
-const changeNumberLives = (gameState, lives) => {
-  if (typeof lives !== `number`) {
-    throw new Error(`Number of lives should be of type number`);
+  const newGame = Object.assign({}, gameState);
+
+  if (answer === `wrong`) {
+    newGame.lives = newGame.lives - 1;
   }
-  if (lives > GameRules.MAX_LIVES_NUMBER) {
-    throw new Error(`Number of lives should not more max number`);
-  }
-  if (lives < 0) {
-    throw new Error(`Number of lives should not be negative value`);
-  }
-  const newGame = Object.assign({}, gameState, {
-    lives
-  });
   return newGame;
 };
 

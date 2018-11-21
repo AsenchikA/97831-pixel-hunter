@@ -4,7 +4,6 @@ const GameRules = {
   RIGHT_ANSWER_POINTS_NUMBER: 100,
   EXTRA_POINTS_NUMBER: 50,
   REQUIRED_ANSWERS_NUMBER: 10,
-  MAX_LIVES_NUMBER: 3,
   MAX_LEVEL: 10,
   MAX_TIME: 30
 };
@@ -14,5 +13,6 @@ const INITIAL_GAME_STATE = {
   lives: 3,
   time: 0
 };
+
 
 export {GameRules, INITIAL_GAME_STATE};

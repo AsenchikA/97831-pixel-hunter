@@ -11,22 +11,22 @@ const countPoints = (answers, lives) => {
   if (answers.length !== GameRules.REQUIRED_ANSWERS_NUMBER) {
     return -1;
   }
-  answers.forEach((answer) => {
-    if (answer.isCorrectAnswer) {
-      resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER;
 
-      if (answer.time < GameRules.TIME_QUICK_ANSWER) {
-        resultPoints = resultPoints + GameRules.EXTRA_POINTS_NUMBER;
-      }
-      if (answer.time > GameRules.TIME_SLOW_ANSWER) {
-        resultPoints = resultPoints - GameRules.EXTRA_POINTS_NUMBER;
-      }
-
-    }
-  });
-
-  if (lives) {
+  if (lives > 0) {
     resultPoints = resultPoints + lives * GameRules.EXTRA_POINTS_NUMBER;
+    answers.forEach((answer) => {
+      if (answer === `correct`) {
+        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER;
+      }
+      if (answer === `fast`) {
+        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER + GameRules.EXTRA_POINTS_NUMBER;
+      }
+      if (answer === `slow`) {
+        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER - GameRules.EXTRA_POINTS_NUMBER;
+      }
+    });
+  } else {
+    resultPoints = -1;
   }
 
   return resultPoints;
