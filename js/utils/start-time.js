@@ -1,26 +1,27 @@
 import {GameRules} from './game-constants.js';
 
-const startTimer = (time, tickCallback = () => { }, stopCallback = () => { }) => {
-  if (typeof time !== `number`) {
+const startTimer = (delay, tickCallback = () => { }) => {
+  if (typeof delay !== `number`) {
     throw new Error(`Time should be of type number`);
   }
-  if (time > GameRules.MAX_TIME) {
+  if (delay > GameRules.MAX_TIME) {
     throw new Error(`Time should not more max number`);
   }
-  if (time < 0) {
+  if (delay < 0) {
     throw new Error(`Time should not be negative value`);
   }
 
-  let gameTime = time;
-  const timer = setInterval(() => {
-    if (gameTime < 0) {
-      clearInterval(timer);
-      stopCallback();
-    } else {
-      gameTime = gameTime - 1;
+  let time = delay;
+
+  return {
+    tick() {
+      time = time - 1;
       tickCallback();
+    },
+    get time() {
+      return time;
     }
-  }, 1000);
+  };
 };
 
 export default startTimer;

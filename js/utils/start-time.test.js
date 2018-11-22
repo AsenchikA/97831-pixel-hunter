@@ -1,20 +1,24 @@
 import {assert} from 'chai';
-import changeTime from './start-time.js';
+import startTimer from './start-time.js';
 
 
 describe(`Check time changer`, () => {
-  // it(`should change time`, () => {
-  //   assert.equal(changeTime(10), 0);
-  //   assert.equal(changeTime(5), 0);
-  // });
+  const testTimer = startTimer(10, () => {});
+
+  testTimer.tick();
+  testTimer.tick();
+
+  it(`should change time`, () => {
+    assert.equal(testTimer.time, 8);
+  });
 
   it(`should not allow set invalid value`, () => {
-    assert.throws(() => changeTime(105), /Time should not more max number/);
-    assert.throws(() => changeTime(-1), /Time should not be negative value/);
+    assert.throws(() => startTimer(105), /Time should not more max number/);
+    assert.throws(() => startTimer(-1), /Time should not be negative value/);
   });
 
   it(`should not allow set not correct value`, () => {
-    assert.throws(() => changeTime([]), /Time should be of type number/);
-    assert.throws(() => changeTime(), /Time should be of type number/);
+    assert.throws(() => startTimer([]), /Time should be of type number/);
+    assert.throws(() => startTimer(), /Time should be of type number/);
   });
 });
