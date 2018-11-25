@@ -3,7 +3,7 @@ import startTimer from './start-time.js';
 
 
 describe(`Check time changer`, () => {
-  const testTimer = startTimer(10, () => {});
+  const testTimer = startTimer(10, () => {}, () => {});
 
   testTimer.tick();
   testTimer.tick();
@@ -20,5 +20,17 @@ describe(`Check time changer`, () => {
   it(`should not allow set not correct value`, () => {
     assert.throws(() => startTimer([]), /Time should be of type number/);
     assert.throws(() => startTimer(), /Time should be of type number/);
+  });
+
+  it(`should not allow work over start time`, () => {
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    assert.throws(() => testTimer.tick(), /Time is up/);
   });
 });

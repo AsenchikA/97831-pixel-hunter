@@ -1,5 +1,12 @@
 import {GameRules} from './game-constants.js';
 
+const answerToPoints = {
+  correct: GameRules.RIGHT_ANSWER_POINTS_NUMBER,
+  fast: GameRules.RIGHT_ANSWER_POINTS_NUMBER + GameRules.EXTRA_POINTS_NUMBER,
+  slow: GameRules.RIGHT_ANSWER_POINTS_NUMBER - GameRules.EXTRA_POINTS_NUMBER,
+  wrong: 0
+};
+
 const countPoints = (answers, lives) => {
   let resultPoints = 0;
   if (typeof lives !== `number`) {
@@ -13,18 +20,10 @@ const countPoints = (answers, lives) => {
   }
 
   if (lives > 0) {
-    resultPoints = resultPoints + lives * GameRules.EXTRA_POINTS_NUMBER;
-    answers.forEach((answer) => {
-      if (answer === `correct`) {
-        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER;
-      }
-      if (answer === `fast`) {
-        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER + GameRules.EXTRA_POINTS_NUMBER;
-      }
-      if (answer === `slow`) {
-        resultPoints = resultPoints + GameRules.RIGHT_ANSWER_POINTS_NUMBER - GameRules.EXTRA_POINTS_NUMBER;
-      }
-    });
+    resultPoints = lives * GameRules.EXTRA_POINTS_NUMBER;
+    resultPoints = resultPoints + answers.reduce((total, answer) => {
+      return total + answerToPoints[answer];
+    }, 0);
   } else {
     resultPoints = -1;
   }

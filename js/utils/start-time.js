@@ -1,6 +1,6 @@
 import {GameRules} from './game-constants.js';
 
-const startTimer = (delay, tickCallback = () => { }) => {
+const startTimer = (delay, tickCallback = () => { }, timerEndCallback = () => { }) => {
   if (typeof delay !== `number`) {
     throw new Error(`Time should be of type number`);
   }
@@ -15,6 +15,10 @@ const startTimer = (delay, tickCallback = () => { }) => {
 
   return {
     tick() {
+      if (time === 0) {
+        timerEndCallback();
+        throw new Error(`Time is up`);
+      }
       time = time - 1;
       tickCallback();
     },
