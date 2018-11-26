@@ -1,6 +1,6 @@
 import {assert} from 'chai';
 import changeLevel from './change-level.js';
-import {INITIAL_GAME_STATE} from './game-constants.js';
+import {INITIAL_GAME_STATE} from '../data/game-data.js';
 
 
 describe(`Check level changer`, () => {
