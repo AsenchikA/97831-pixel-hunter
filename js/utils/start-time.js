@@ -15,12 +15,14 @@ const startTimer = (delay, tickCallback = () => { }, timerEndCallback = () => { 
 
   return {
     tick() {
-      if (time === 0) {
-        timerEndCallback();
-        throw new Error(`Time is up`);
+      if (time > 0) {
+        time = time - 1;
+        if (time === 0) {
+          timerEndCallback();
+        } else {
+          tickCallback();
+        }
       }
-      time = time - 1;
-      tickCallback();
     },
     get time() {
       return time;

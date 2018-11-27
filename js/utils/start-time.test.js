@@ -31,6 +31,12 @@ describe(`Check time changer`, () => {
     testTimer.tick();
     testTimer.tick();
     testTimer.tick();
-    assert.throws(() => testTimer.tick(), /Time is up/);
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    testTimer.tick();
+    assert.equal(testTimer.time, 0);
   });
 });
