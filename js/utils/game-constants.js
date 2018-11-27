@@ -1,0 +1,18 @@
+const GameRules = {
+  TIME_QUICK_ANSWER: 10,
+  TIME_SLOW_ANSWER: 20,
+  RIGHT_ANSWER_POINTS_NUMBER: 100,
+  EXTRA_POINTS_NUMBER: 50,
+  REQUIRED_ANSWERS_NUMBER: 10,
+  MAX_LEVEL: 10,
+  MAX_TIME: 30
+};
+
+const INITIAL_GAME_STATE = {
+  level: 0,
+  lives: 3,
+  time: 0
+};
+
+
+export {GameRules, INITIAL_GAME_STATE};
