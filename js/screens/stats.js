@@ -1,9 +1,7 @@
 import wrapElement from './../utils/wrap-element.js';
-import {renderBackButtonTemplate} from './header.js';
 import statsIcon from '../data/stats-icons.js';
 
 const template = `<header class="header">
-${renderBackButtonTemplate}
 </header>
 <section class="result">
 <h2 class="result__title">Победа!</h2>

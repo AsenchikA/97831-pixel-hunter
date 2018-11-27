@@ -1,5 +1,5 @@
 import wrapElement from './../utils/wrap-element.js';
-import renderScreen from './../utils/render-screen.js';
+import {renderScreen} from './../utils/render.js';
 import greetengBlock from './greeteng.js';
 
 const template = `<section class="intro">

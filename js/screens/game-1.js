@@ -1,12 +1,10 @@
 import wrapElement from './../utils/wrap-element.js';
-import {renderBackButtonTemplate, timerTemplate, livesTemplate} from './header.js';
+import {timerTemplate, livesTemplate} from './header.js';
 import statsIcons from '../data/stats-icons.js';
 import {levels, gameState} from '../data/game-data.js';
-import changeLevel from '../utils/change-level.js';
 import updateGame from '../utils/update-game.js';
 
 const template = `<header class="header">
-${renderBackButtonTemplate()}
 ${timerTemplate(30)}
 ${livesTemplate(gameState.lives)}
 </header>
@@ -37,17 +35,14 @@ const gameOptions = Array.from(element.querySelectorAll(`.game__option`));
 const gameForm = element.querySelector(`form`);
 
 gameForm.addEventListener(`change`, () => {
-  let answers = [];
+  const answers = [];
   gameOptions.forEach((option) => {
-    // answers = answers.push(option.querySelectorAll(`input`).find((input) => input.checked));
-    let answerItem = Array.from(option.querySelectorAll(`input`)).find((input) => input.checked);
+    const answerItem = Array.from(option.querySelectorAll(`input`)).find((input) => input.checked);
     if (answerItem) {
-      answers.push(answerItem);
+      answers.push(answerItem.value);
     }
   });
   if (answers && answers.length === 2) {
-    gameState.level = changeLevel(gameState, gameState.level + 1).level;
-    // renderScreen(secondGameBlock);
     updateGame(answers, gameState.level, gameState.time);
   }
 });

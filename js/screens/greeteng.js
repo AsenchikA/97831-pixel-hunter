@@ -1,5 +1,5 @@
 import wrapElement from './../utils/wrap-element.js';
-import renderScreen from './../utils/render-screen.js';
+import {renderScreen} from '../utils/render.js';
 import rules from './rules.js';
 
 const template = `<section class="greeting central--blur">

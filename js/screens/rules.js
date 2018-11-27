@@ -1,10 +1,10 @@
 import wrapElement from './../utils/wrap-element.js';
-import renderScreen from './../utils/render-screen.js';
+import {renderScreen} from '../utils/render.js';
 import firstGameBlock from './game-1.js';
-import {renderBackButtonTemplate} from './header.js';
+import {renderButtonHeader} from './header.js';
 
 const template = `<header class="header">
-${renderBackButtonTemplate()}
+${renderButtonHeader()}
 </header>
 <section class="rules">
 <h2 class="rules__title">Правила</h2>
