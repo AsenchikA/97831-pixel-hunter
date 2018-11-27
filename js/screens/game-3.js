@@ -22,11 +22,12 @@ export default (options) => {
 
   const element = wrapElement(template);
 
-  const gameForm = element.querySelector(`form`);
+  // const gameForm = element.querySelector(`form`);
 
-  gameForm.addEventListener(`click`, (event) => {
-    if (event.target.parentNode.classList.contains(`game__option`)) {
-      
-    }
-  });
+  // gameForm.addEventListener(`click`, (event) => {
+  //   if (event.target.parentNode.classList.contains(`game__option`)) {
+  //   }
+  // });
+
+  return element;
 };
