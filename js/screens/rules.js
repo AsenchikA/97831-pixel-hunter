@@ -1,10 +1,10 @@
 import wrapElement from './../utils/wrap-element.js';
 import {renderScreen} from '../utils/render.js';
-import firstGameBlock from './game-1.js';
-import {renderButtonHeader} from './header.js';
+import {createButtonHeader} from './header.js';
+import {gameState, LevelData} from '../data/game-data.js';
 
-const template = `<header class="header">
-${renderButtonHeader()}
+const template = `
+<header class="header">
 </header>
 <section class="rules">
 <h2 class="rules__title">Правила</h2>
@@ -25,9 +25,12 @@ ${renderButtonHeader()}
 
 const element = wrapElement(template);
 
+element.querySelector(`.header`).appendChild(createButtonHeader());
+
 const rulesButton = element.querySelector(`.rules__button`);
-rulesButton.addEventListener(`click`, () => {
-  renderScreen(firstGameBlock);
+rulesButton.addEventListener(`click`, (event) => {
+  event.preventDefault();
+  renderScreen(LevelData[gameState.level - 1].type());
 });
 
 const rulesInput = element.querySelector(`.rules__input`);

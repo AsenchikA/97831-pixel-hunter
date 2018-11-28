@@ -1,11 +1,26 @@
+import firstGameBlock from './../screens/game-1.js';
+import secondGameBlock from './../screens/game-2.js';
+import thirdGameBlock from './../screens/game-3.js';
+
 const GameRules = {
-  TIME_QUICK_ANSWER: 10,
-  TIME_SLOW_ANSWER: 20,
   RIGHT_ANSWER_POINTS_NUMBER: 100,
   EXTRA_POINTS_NUMBER: 50,
   REQUIRED_ANSWERS_NUMBER: 10,
   MAX_LEVEL: 10,
   MAX_TIME: 30
+};
+
+
+const TimeToAnswer = {
+  FAST: 10,
+  CORRECT: 20,
+  SLOW: 30
+};
+
+const LevelScreens = {
+  TWO_OF_TO: () => firstGameBlock(LevelData[gameState.level - 1].options),
+  ONE_QUESTION: () => secondGameBlock(LevelData[gameState.level - 1].options),
+  ONE_FROM_THREE: () => thirdGameBlock(LevelData[gameState.level - 1].options)
 };
 
 const Images = {
@@ -31,47 +46,57 @@ const Images = {
   ]
 };
 
-const levels = [
+const LevelData = [
   {
-    template: `firstGameBlock`,
-    options: new Set([Images.paintings[0], Images.photos[0]])
+    type: LevelScreens.TWO_OF_TO,
+    options: [Images.paintings[0], Images.photos[0]],
+    answer: [`photo`, `paint`]
   },
   {
-    template: `secondGameBlock`,
-    options: new Set([Images.paintings[1]])
+    type: LevelScreens.ONE_QUESTION,
+    options: Images.paintings[1],
+    answer: `photo`
   },
   {
-    template: `thirdGameBlock`,
-    options: new Set([Images.paintings[2], Images.photos[2]])
+    type: LevelScreens.ONE_FROM_THREE,
+    options: [Images.paintings[2], Images.photos[2], Images.paintings[0]],
+    answer: `img1`
   },
   {
-    template: `firstGameBlock`,
-    options: new Set([Images.paintings[1], Images.photos[1]])
+    type: LevelScreens.TWO_OF_TO,
+    options: [Images.paintings[1], Images.photos[1]],
+    answer: [`photo`, `paint`]
   },
   {
-    template: `secondGameBlock`,
-    options: new Set([Images.photos[1]])
+    type: LevelScreens.ONE_QUESTION,
+    options: Images.photos[1],
+    answer: `photo`
   },
   {
-    template: `thirdGameBlock`,
-    options: new Set([Images.paintings[1], Images.photos[1]])
+    type: LevelScreens.ONE_FROM_THREE,
+    options: [Images.paintings[1], Images.photos[1], Images.photos[0]],
+    answer: `img1`
   },
   {
-    template: `firstGameBlock`,
-    options: new Set([Images.paintings[2], Images.photos[2]])
+    type: LevelScreens.TWO_OF_TO,
+    options: [Images.paintings[2], Images.photos[2]],
+    answer: [`photo`, `paint`]
   },
   {
-    template: `secondGameBlock`,
-    options: new Set([Images.paintings[0]])
+    type: LevelScreens.ONE_QUESTION,
+    options: Images.paintings[0],
+    answer: `photo`
   },
   {
-    template: `thirdGameBlock`,
-    options: new Set([Images.paintings[1], Images.photos[1]])
+    type: LevelScreens.ONE_FROM_THREE,
+    options: [Images.paintings[1], Images.photos[1], Images.photos[1]],
+    answer: `img1`
   },
   {
-    template: `firstGameBlock`,
-    options: new Set([Images.paintings[2], Images.photos[2]])
-  },
+    type: LevelScreens.TWO_OF_TO,
+    options: [Images.paintings[2], Images.photos[2]],
+    answer: [`photo`, `paint`]
+  }
 ];
 
 const INITIAL_GAME_STATE = {
@@ -83,18 +108,5 @@ const INITIAL_GAME_STATE = {
 
 const gameState = Object.assign({}, INITIAL_GAME_STATE);
 
-const rightAnswers = [
-  [`photo`, `paint`],
-  `photo`,
-  `img1`,
-  [`photo`, `paint`],
-  `photo`,
-  `img1`,
-  [`photo`, `paint`],
-  `photo`,
-  `img1`,
-  [`photo`, `paint`],
-];
 
-
-export {GameRules, INITIAL_GAME_STATE, gameState, levels, rightAnswers};
+export {GameRules, INITIAL_GAME_STATE, gameState, LevelData, LevelScreens, TimeToAnswer};
