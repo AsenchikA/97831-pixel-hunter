@@ -1,7 +1,3 @@
-import firstGameBlock from './../screens/game-1.js';
-import secondGameBlock from './../screens/game-2.js';
-import thirdGameBlock from './../screens/game-3.js';
-
 const GameRules = {
   RIGHT_ANSWER_POINTS_NUMBER: 100,
   EXTRA_POINTS_NUMBER: 50,
@@ -18,9 +14,9 @@ const TimeToAnswer = {
 };
 
 const LevelScreens = {
-  TWO_OF_TO: () => firstGameBlock(LevelData[gameState.level - 1].options),
-  ONE_QUESTION: () => secondGameBlock(LevelData[gameState.level - 1].options),
-  ONE_FROM_THREE: () => thirdGameBlock(LevelData[gameState.level - 1].options)
+  TWO_OF_TWO: `firstGameBlock`,
+  ONE_QUESTION: `secondGameBlock`,
+  ONE_FROM_THREE: `thirdGameBlock`
 };
 
 const Images = {
@@ -48,52 +44,52 @@ const Images = {
 
 const LevelData = [
   {
-    type: LevelScreens.TWO_OF_TO,
+    type: `firstGameBlock`,
     options: [Images.paintings[0], Images.photos[0]],
     answer: [`photo`, `paint`]
   },
   {
-    type: LevelScreens.ONE_QUESTION,
+    type: `secondGameBlock`,
     options: Images.paintings[1],
     answer: `photo`
   },
   {
-    type: LevelScreens.ONE_FROM_THREE,
+    type: `thirdGameBlock`,
     options: [Images.paintings[2], Images.photos[2], Images.paintings[0]],
-    answer: `img1`
+    answer: `Option 1`
   },
   {
-    type: LevelScreens.TWO_OF_TO,
+    type: `firstGameBlock`,
     options: [Images.paintings[1], Images.photos[1]],
     answer: [`photo`, `paint`]
   },
   {
-    type: LevelScreens.ONE_QUESTION,
+    type: `secondGameBlock`,
     options: Images.photos[1],
     answer: `photo`
   },
   {
-    type: LevelScreens.ONE_FROM_THREE,
+    type: `thirdGameBlock`,
     options: [Images.paintings[1], Images.photos[1], Images.photos[0]],
-    answer: `img1`
+    answer: `Option 1`
   },
   {
-    type: LevelScreens.TWO_OF_TO,
+    type: `firstGameBlock`,
     options: [Images.paintings[2], Images.photos[2]],
     answer: [`photo`, `paint`]
   },
   {
-    type: LevelScreens.ONE_QUESTION,
+    type: `secondGameBlock`,
     options: Images.paintings[0],
     answer: `photo`
   },
   {
-    type: LevelScreens.ONE_FROM_THREE,
+    type: `thirdGameBlock`,
     options: [Images.paintings[1], Images.photos[1], Images.photos[1]],
-    answer: `img1`
+    answer: `Option 1`
   },
   {
-    type: LevelScreens.TWO_OF_TO,
+    type: `firstGameBlock`,
     options: [Images.paintings[2], Images.photos[2]],
     answer: [`photo`, `paint`]
   }

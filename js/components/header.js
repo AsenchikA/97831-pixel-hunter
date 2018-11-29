@@ -1,5 +1,5 @@
 import {INITIAL_GAME_STATE} from '../data/game-data.js';
-import greetengBlock from './../screens/greeteng.js';
+import greetengBlock from './../components/greeteng.js';
 import {renderScreen} from './../utils/render.js';
 import wrapElement from './../utils/wrap-element.js';
 
@@ -24,9 +24,20 @@ const createButtonHeader = () => {
 
 const timerTemplate = (time) => `<div class="game__timer">${time}</div>`;
 
-const livesTemplate = (lives) => `<div class="game__lives">
-${new Array(lives).fill(`<img src="img/heart__full.svg" class="game__heart" alt="Life" width="31" height="27">`).join(``)}
-${new Array(INITIAL_GAME_STATE.lives - lives).fill(`<img src="img/heart__empty.svg" class="game__heart" alt="Life" width="31" height="27">`).join(``)}
-</div>`;
+const livesTemplate = (lives) => {
+  const lostLives = new Array(INITIAL_GAME_STATE.lives - lives).fill(`img/heart__empty.svg`);
+  const leftLives = new Array(lives).fill(`img/heart__full.svg`);
+
+  const livesTemplates = `
+  <div class="game__lives">
+    ${leftLives
+      .concat(lostLives)
+      .map((src) => `<img src="${src}" class="game__heart" alt="Life" width="31" height="27">`)
+      .join(``)}
+  </div>`;
+
+  return livesTemplates;
+
+};
 
 export {createButtonHeader, timerTemplate, livesTemplate};

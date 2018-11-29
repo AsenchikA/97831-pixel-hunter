@@ -19,7 +19,7 @@ const countPoints = (answers, lives) => {
     return -1;
   }
 
-  if (lives > 0) {
+  if (lives >= 0) {
     resultPoints = lives * GameRules.EXTRA_POINTS_NUMBER;
     resultPoints = resultPoints + answers.reduce((total, answer) => {
       return total + answerToPoints[answer];

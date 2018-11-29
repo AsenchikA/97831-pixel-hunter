@@ -2,7 +2,8 @@ import {gameState, LevelData, TimeToAnswer, GameRules} from '../data/game-data.j
 import changeNumberLives from './change-live.js';
 import {renderScreen} from './render.js';
 import changeLevel from './change-level.js';
-import stats from './../screens/stats.js';
+import stats from './../components/stats.js';
+import levelTypes from './../data/level-types.js';
 
 const answerEstimate = (answer, level, time) => {
   let estimate = `wrong`;
@@ -22,8 +23,9 @@ const updateGame = (answer, level, time) => {
   gameState.answers.push(estimate);
   gameState.lives = changeNumberLives(gameState, estimate).lives;
   gameState.level = changeLevel(gameState, gameState.level + 1).level;
-  if (gameState.lives && gameState.level <= GameRules.MAX_LEVEL) {
-    renderScreen(LevelData[gameState.level - 1].type());
+  if (gameState.lives > 0 && gameState.level <= GameRules.MAX_LEVEL) {
+    const nextLevel = LevelData[gameState.level - 1];
+    renderScreen(levelTypes[nextLevel.type](nextLevel.options));
   } else {
     renderScreen(stats(gameState));
   }

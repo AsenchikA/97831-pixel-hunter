@@ -36,10 +36,7 @@ export default (option) => {
   const gameForm = element.querySelector(`form`);
 
   gameForm.addEventListener(`change`, () => {
-    const answer = Array.from(gameForm.querySelectorAll(`input`)).find((input) => input.checked).value;
-    if (answer) {
-      updateGame(answer, gameState.level, gameState.time);
-    }
+    updateGame(event.target.value, gameState.level, gameState.time);
   });
 
   return element;

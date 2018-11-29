@@ -2,6 +2,7 @@ import wrapElement from './../utils/wrap-element.js';
 import {renderScreen} from '../utils/render.js';
 import {createButtonHeader} from './header.js';
 import {gameState, LevelData} from '../data/game-data.js';
+import levelTypes from './../data/level-types.js';
 
 const template = `
 <header class="header">
@@ -30,7 +31,8 @@ element.querySelector(`.header`).appendChild(createButtonHeader());
 const rulesButton = element.querySelector(`.rules__button`);
 rulesButton.addEventListener(`click`, (event) => {
   event.preventDefault();
-  renderScreen(LevelData[gameState.level - 1].type());
+  const nextLevel = LevelData[gameState.level - 1];
+  renderScreen((levelTypes[nextLevel.type])(nextLevel.options));
 });
 
 const rulesInput = element.querySelector(`.rules__input`);
