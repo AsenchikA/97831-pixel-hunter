@@ -1,6 +1,6 @@
-import {GameRules} from './game-constants.js';
+import {GameRules} from '../data/game-data.js';
 
-const startTimer = (delay, tickCallback = () => { }, timerEndCallback = () => { }) => {
+const createTimer = (delay, tickCallback = () => { }, timerEndCallback = () => { }) => {
   if (typeof delay !== `number`) {
     throw new Error(`Time should be of type number`);
   }
@@ -30,4 +30,4 @@ const startTimer = (delay, tickCallback = () => { }, timerEndCallback = () => { 
   };
 };
 
-export default startTimer;
+export default createTimer;

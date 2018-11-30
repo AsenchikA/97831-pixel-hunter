@@ -1,4 +1,4 @@
-import {GameRules} from './game-constants.js';
+import {GameRules} from '../data/game-data.js';
 
 const changeLevel = (gameState, level) => {
   if (typeof level !== `number`) {

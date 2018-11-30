@@ -1,4 +1,4 @@
-import {GameRules} from './game-constants.js';
+import {GameRules} from '../data/game-data.js';
 
 const answerToPoints = {
   correct: GameRules.RIGHT_ANSWER_POINTS_NUMBER,
