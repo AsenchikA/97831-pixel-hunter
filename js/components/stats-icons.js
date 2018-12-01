@@ -1,11 +1,6 @@
-import {GameRules} from "../data/game-data.js";
+import {StatsIcons} from "../views/stats-icons-view";
 
 export default (answers) => {
-  const statsIcons = `
-    <ul class="stats">
-      ${answers.map((answer) => `<li class="stats__result stats__result--${answer}"></li>`).join(``)}
-      ${new Array(GameRules.MAX_LEVEL - answers.length).fill(`<li class="stats__result stats__result--unknown"></li>`).join(``)}
-    </ul>
-  `;
+  const statsIcons = new StatsIcons(answers);
   return statsIcons;
 };

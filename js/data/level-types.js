@@ -1,9 +1,7 @@
-import firstGameBlock from './../components/game-1.js';
-import secondGameBlock from './../components/game-2.js';
-import thirdGameBlock from './../components/game-3.js';
+import {gameScreen1, gameScreen2, gameScreen3} from '../components/game-screen.js';
 
 export default {
-  firstGameBlock,
-  secondGameBlock,
-  thirdGameBlock
+  gameScreen1,
+  gameScreen2,
+  gameScreen3
 };

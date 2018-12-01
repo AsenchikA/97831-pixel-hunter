@@ -4,6 +4,7 @@ import {renderScreen} from './render.js';
 import changeLevel from './change-level.js';
 import stats from './../components/stats.js';
 import levelTypes from './../data/level-types.js';
+import countPoints from '../utils/count-points.js';
 
 const answerEstimate = (answer, level, time) => {
   let estimate = `wrong`;
@@ -25,9 +26,10 @@ const updateGame = (answer, level, time) => {
   gameState.level = changeLevel(gameState, gameState.level + 1).level;
   if (gameState.lives > 0 && gameState.level <= GameRules.MAX_LEVEL) {
     const nextLevel = LevelData[gameState.level - 1];
-    renderScreen(levelTypes[nextLevel.type](nextLevel.options));
+    renderScreen(levelTypes[nextLevel.type](nextLevel.options, gameState).element);
   } else {
-    renderScreen(stats(gameState));
+    const resultPoints = countPoints(gameState.answers, gameState.lives);
+    renderScreen(stats(gameState, resultPoints).element);
   }
 };
 

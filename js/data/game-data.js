@@ -44,52 +44,52 @@ const Images = {
 
 const LevelData = [
   {
-    type: `firstGameBlock`,
+    type: `gameScreen1`,
     options: [Images.paintings[0], Images.photos[0]],
     answer: [`photo`, `paint`]
   },
   {
-    type: `secondGameBlock`,
+    type: `gameScreen2`,
     options: Images.paintings[1],
     answer: `photo`
   },
   {
-    type: `thirdGameBlock`,
+    type: `gameScreen3`,
     options: [Images.paintings[2], Images.photos[2], Images.paintings[0]],
     answer: `Option 1`
   },
   {
-    type: `firstGameBlock`,
+    type: `gameScreen1`,
     options: [Images.paintings[1], Images.photos[1]],
     answer: [`photo`, `paint`]
   },
   {
-    type: `secondGameBlock`,
+    type: `gameScreen2`,
     options: Images.photos[1],
     answer: `photo`
   },
   {
-    type: `thirdGameBlock`,
+    type: `gameScreen3`,
     options: [Images.paintings[1], Images.photos[1], Images.photos[0]],
     answer: `Option 1`
   },
   {
-    type: `firstGameBlock`,
+    type: `gameScreen1`,
     options: [Images.paintings[2], Images.photos[2]],
     answer: [`photo`, `paint`]
   },
   {
-    type: `secondGameBlock`,
+    type: `gameScreen2`,
     options: Images.paintings[0],
     answer: `photo`
   },
   {
-    type: `thirdGameBlock`,
+    type: `gameScreen3`,
     options: [Images.paintings[1], Images.photos[1], Images.photos[1]],
     answer: `Option 1`
   },
   {
-    type: `firstGameBlock`,
+    type: `gameScreen1`,
     options: [Images.paintings[2], Images.photos[2]],
     answer: [`photo`, `paint`]
   }
