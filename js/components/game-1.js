@@ -3,6 +3,7 @@ import {timerTemplate, livesTemplate, createButtonHeader} from './header.js';
 import statsIcons from './stats-icons.js';
 import {gameState} from '../data/game-data.js';
 import updateGame from '../utils/update-game.js';
+import resize from '../utils/resize.js';
 
 export default (options) => {
   const template = `
@@ -30,6 +31,7 @@ export default (options) => {
   ${statsIcons(gameState.answers)}
   </section>`;
 
+
   const element = wrapElement(template);
 
   const header = element.querySelector(`.header`);
@@ -51,5 +53,28 @@ export default (options) => {
       updateGame(answers, gameState.level, gameState.time);
     }
   });
+
+  const images = Array.from(gameForm.querySelectorAll(`.game__option img`));
+  const countImages = images.length;
+
+  let countLoadedImages = 0;
+
+  images.forEach((image) => {
+    image.addEventListener(`load`, () => {
+      countLoadedImages++;
+      if (countLoadedImages === countImages) {
+        resizeImages();
+      }
+    });
+  });
+
+  const resizeImages = () => {
+    images.forEach((image) => {
+      const newSizes = resize({width: image.width, height: image.height}, {width: image.naturalWidth, height: image.naturalHeight});
+      image.width = newSizes.width;
+      image.height = newSizes.height;
+    });
+  };
+
   return element;
 };
