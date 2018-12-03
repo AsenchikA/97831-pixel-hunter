@@ -1,5 +1,5 @@
 import AbstractView from './abstract-view.js';
-import headerButton from '../components/header-button.js';
+import {backButton} from '../components/header.js';
 
 export class Rules extends AbstractView {
   constructor() {
@@ -36,7 +36,7 @@ export class Rules extends AbstractView {
     });
 
     const rulesInput = this.element.querySelector(`.rules__input`);
-    rulesInput.addEventListener(`keyup`, (event) => {
+    rulesInput.addEventListener(`input`, (event) => {
       if (event.target.value && rulesButton.hasAttribute(`disabled`)) {
         rulesButton.removeAttribute(`disabled`);
       }
@@ -48,7 +48,7 @@ export class Rules extends AbstractView {
   render() {
     const wrapper = super.render();
     const header = wrapper.querySelector(`.header`);
-    header.insertBefore(headerButton(), header.children[0]);
+    header.insertBefore(backButton(), header.children[0]);
     return wrapper;
   }
   onContinue() {

@@ -1,8 +1,6 @@
 import AbstractView from './abstract-view.js';
-import headerButton from '../components/header-button.js';
-import timer from '../components/timer.js';
-import lives from '../components/lives.js';
-import statsIcons from '../components/stats-icons.js';
+import {backButton, liveCounter, timer} from '../components/header.js';
+import {statsIcons} from '../components/stats.js';
 
 export class GameScreen2 extends AbstractView {
   constructor(option, gameState) {
@@ -14,7 +12,7 @@ export class GameScreen2 extends AbstractView {
     return `
     <header class="header">
     ${timer(30).template}
-    ${lives(this.gameState.lives).template}
+    ${liveCounter(this.gameState.lives).template}
     </header>
     <section class="game">
     <p class="game__task">Угадай, фото или рисунок?</p>
@@ -44,7 +42,7 @@ export class GameScreen2 extends AbstractView {
   render() {
     const wrapper = super.render();
     const header = wrapper.querySelector(`.header`);
-    header.insertBefore(headerButton(), header.children[0]);
+    header.insertBefore(backButton(), header.children[0]);
     return wrapper;
   }
   onContinue() {

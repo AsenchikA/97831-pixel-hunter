@@ -1,6 +1,7 @@
 import {Stats} from "../views/stats-view";
+import {StatsIcons} from "../views/stats-icons-view";
 
-export default (gameState, resultPoints) => {
-  const stats = new Stats(gameState, resultPoints);
-  return stats;
-};
+const stats = (gameState, resultPoints) => new Stats(gameState, resultPoints);
+const statsIcons = (answers) => new StatsIcons(answers);
+
+export {stats, statsIcons};
