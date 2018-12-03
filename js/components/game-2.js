@@ -3,7 +3,7 @@ import {timerTemplate, livesTemplate, createButtonHeader} from './header.js';
 import statsIcons from './stats-icons.js';
 import {gameState} from '../data/game-data.js';
 import updateGame from '../utils/update-game.js';
-import resize from '../utils/resize.js';
+import cropImages from '../utils/crop-images.js';
 
 export default (option) => {
   const template = `
@@ -41,10 +41,11 @@ export default (option) => {
   });
 
   const image = gameForm.querySelector(`.game__option img`);
+
   image.addEventListener(`load`, () => {
-    const newSizes = resize({width: image.width, height: image.height}, {width: image.naturalWidth, height: image.naturalHeight});
-    image.width = newSizes.width;
-    image.height = newSizes.height;
+    const newSize = cropImages([image]);
+    image.width = newSize[0].width;
+    image.height = newSize[0].height;
   });
 
   return element;
