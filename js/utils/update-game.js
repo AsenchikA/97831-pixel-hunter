@@ -4,7 +4,7 @@ import {renderScreen} from './render.js';
 import changeLevel from './change-level.js';
 import {stats} from './../components/stats.js';
 import countPoints from '../utils/count-points.js';
-import gameScreen from '../components/game-screen.js'
+import gameScreen from '../components/game-screen.js';
 
 const answerEstimate = (answer, level, time) => {
   let estimate = `wrong`;

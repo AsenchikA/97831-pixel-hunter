@@ -1,7 +1,7 @@
 import {Rules} from "../views/rules-view";
 import {renderScreen} from "../utils/render";
 import {LevelData, gameState} from "../data/game-data";
-import gameScreen from './game-screen.js'
+import gameScreen from './game-screen.js';
 
 export default () => {
   const rulesScreen = new Rules();

@@ -1,7 +1,7 @@
-import { statsIcons } from '../components/stats.js';
-import { GameRules } from '../data/game-data.js';
+import {statsIcons} from '../components/stats.js';
+import {GameRules} from '../data/game-data.js';
 import AbstractView from './abstract-view.js';
-import { backButton } from '../components/header.js';
+import {backButton} from '../components/header.js';
 
 export class Stats extends AbstractView {
   constructor(gameState, resultPoints) {
