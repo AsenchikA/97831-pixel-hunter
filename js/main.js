@@ -1,4 +1,4 @@
 import {renderScreen} from './utils/render.js';
-import introBlock from './components/intro.js';
+import intro from './components/intro.js';
 
-renderScreen(introBlock);
+renderScreen(intro().element);
