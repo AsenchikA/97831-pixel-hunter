@@ -1,10 +1,9 @@
 import {ButtonHeader, Lives, Timer} from "../views/header-view";
-import {renderScreen} from "../utils/render";
-import greeting from "./greeting";
+import Router from "../router/application-router";
 
 const backButton = () => {
   const headerBtn = new ButtonHeader();
-  headerBtn.onClick = () => renderScreen(greeting().element);
+  headerBtn.onClick = () => Router.showGreeting();
   return headerBtn.element;
 };
 

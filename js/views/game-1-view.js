@@ -1,18 +1,19 @@
 import AbstractView from './abstract-view.js';
-import {backButton, liveCounter, timer} from '../components/header.js';
+import {backButton, liveCounter, timer} from '../controllers/header-screen.js';
 import {statsIcons} from '../components/stats.js';
 
 export class GameScreen1 extends AbstractView {
-  constructor(options, gameState) {
+  constructor(options, lives, estimates) {
     super();
     this.options = options;
-    this.gameState = gameState;
+    this.lives = lives;
+    this.estimates = estimates;
   }
   get template() {
     return `
     <header class="header">
       ${timer(30).template}
-      ${liveCounter(this.gameState.lives).template}
+      ${liveCounter(this.lives).template}
     </header>
     <section class="game">
     <p class="game__task">Угадайте для каждого изображения фото или рисунок?</p>
@@ -31,7 +32,7 @@ export class GameScreen1 extends AbstractView {
         </div>`
   ))}
     </form>
-    ${statsIcons(this.gameState.answers).template}
+    ${statsIcons(this.estimates).template}
     </section>`;
   }
   bind() {
@@ -47,7 +48,7 @@ export class GameScreen1 extends AbstractView {
         }
       });
       if (answers && answers.length === 2) {
-        this.onContinue(answers);
+        this.onContinue(answers.join(`, `));
       }
     });
   }
