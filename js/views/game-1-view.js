@@ -1,6 +1,6 @@
 import AbstractView from './abstract-view.js';
-import {backButton, liveCounter, timer} from '../controllers/header-screen.js';
-import {statsIcons} from '../components/stats.js';
+import {backButton, liveCounter} from '../controllers/header-screen.js';
+import {StatsIcons} from './stats-icons-view.js';
 
 export class GameScreen1 extends AbstractView {
   constructor(options, lives, estimates) {
@@ -12,7 +12,6 @@ export class GameScreen1 extends AbstractView {
   get template() {
     return `
     <header class="header">
-      ${timer(30).template}
       ${liveCounter(this.lives).template}
     </header>
     <section class="game">
@@ -32,7 +31,7 @@ export class GameScreen1 extends AbstractView {
         </div>`
   ))}
     </form>
-    ${statsIcons(this.estimates).template}
+    ${new StatsIcons(this.estimates).template}
     </section>`;
   }
   bind() {

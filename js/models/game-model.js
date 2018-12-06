@@ -27,11 +27,16 @@ export default class GameModel {
   }
   restart() {
     this._state = Object.assign({}, INITIAL_GAME_STATE);
+    this._state.estimates = Object.assign([], INITIAL_GAME_STATE.estimates);
   }
   nextLevel() {
     this._state = changeLevel(this._state, this._state.level + 1);
+    this._state.time = INITIAL_GAME_STATE.time;
   }
   decreaseLives() {
     this._state.lives--;
+  }
+  decreaseTime() {
+    this._state.time--;
   }
 }

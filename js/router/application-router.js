@@ -4,6 +4,7 @@ import greeting from "../controllers/greeting-screen.js";
 import rules from "../controllers/rules-screen.js";
 import GameModel from "../models/game-model.js";
 import GameScreen from "../controllers/game-screen.js";
+import {Stats} from "../views/stats-view.js";
 
 export default class Router {
   static showIntro() {
@@ -23,9 +24,9 @@ export default class Router {
     renderScreen(gameScreen.element);
   }
 
-  // static showStats(stats) {
-  //   const statistics = new StatsScreen(stats);
-  //   changeView(statistics.element);
-  // }
+  static showStats(stats) {
+    const statistics = new Stats(stats);
+    renderScreen(statistics.element);
+  }
 
 }
