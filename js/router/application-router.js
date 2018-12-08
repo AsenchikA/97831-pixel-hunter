@@ -11,11 +11,11 @@ let gameData;
 
 export default class Router {
   static showIntro() {
-    Loader.loadData()
-            .then((data) => (gameData = data));
     renderScreen(intro().element);
   }
   static showGreeting() {
+    Loader.loadData()
+            .then((data) => (gameData = data));
     renderScreen(greeting().element);
   }
   static showRules() {
@@ -29,8 +29,10 @@ export default class Router {
     renderScreen(gameScreen.element);
   }
 
-  static showStats(stats) {
-    renderScreen(statsScreen(stats).element);
+  static showStats(stats, isSuccessGame, playerName) {
+    Loader.saveResult(playerName, stats)
+      .then(() => Loader.loadStats(playerName))
+      .then((data) => renderScreen(statsScreen(data, isSuccessGame).element));
   }
 
 }

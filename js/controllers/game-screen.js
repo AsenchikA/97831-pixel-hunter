@@ -87,6 +87,7 @@ export default class GameScreen {
   showStatsScreen() {
     const {lives, estimates} = this.gameModel.state;
     const stats = countPoints(estimates, lives);
-    Router.showStats(stats);
+    const isSuccessGame = Boolean(stats.total !== -1);
+    Router.showStats(stats, isSuccessGame, this.gameModel.playerName);
   }
 }
