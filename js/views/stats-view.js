@@ -1,5 +1,4 @@
 import AbstractView from './abstract-view.js';
-import {backButton} from '../controllers/header-screen.js';
 import StatsIcons from './stats-icons-view.js';
 
 export default class Stats extends AbstractView {
@@ -73,12 +72,6 @@ export default class Stats extends AbstractView {
         .map((item, index) => (this.stats.total !== -1 ? successTable(index) : failTable(index)))
         .join(``)}
     </section>`;
-  }
-  render() {
-    const wrapper = super.render();
-    const header = wrapper.querySelector(`.header`);
-    header.insertBefore(backButton(), header.children[0]);
-    return wrapper;
   }
 }
 

@@ -1,10 +1,11 @@
 import AbstractView from './abstract-view.js';
-import {backButton, liveCounter} from '../controllers/header-screen.js';
 import StatsIcons from './stats-icons-view.js';
+import Lives from './lives-view.js';
 
 export default class GameScreen3 extends AbstractView {
-  constructor(options, lives, estimates) {
+  constructor(question, options, lives, estimates) {
     super();
+    this.question = question;
     this.options = options;
     this.lives = lives;
     this.estimates = estimates;
@@ -12,14 +13,14 @@ export default class GameScreen3 extends AbstractView {
   get template() {
     return `
     <header class="header">
-    ${liveCounter(this.lives).template}
+    ${new Lives(this.lives).template}
     </header>
     <section class="game">
-    <p class="game__task">Найдите рисунок среди изображений</p>
+    <p class="game__task">${this.question}</p>
     <form class="game__content  game__content--triple">
     ${this.options.map((option, optionIndex) => (
     `<div class="game__option">
-        <img src=${option} alt="Option ${optionIndex + 1}" width="304" height="455">
+        <img src=${option.url} alt="Option ${optionIndex + 1}" width=${option.width} height=${option.height}>
       </div>`
   ))}
     </form>
@@ -35,12 +36,6 @@ export default class GameScreen3 extends AbstractView {
         this.onContinue(answer);
       }
     });
-  }
-  render() {
-    const wrapper = super.render();
-    const header = wrapper.querySelector(`.header`);
-    header.insertBefore(backButton(), header.children[0]);
-    return wrapper;
   }
   onContinue() {
 
