@@ -1,4 +1,4 @@
-import {Intro} from "../views/intro-view";
+import Intro from "../views/intro-view";
 import Router from "../router/application-router";
 
 export default () => {

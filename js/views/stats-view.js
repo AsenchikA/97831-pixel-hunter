@@ -1,8 +1,8 @@
 import AbstractView from './abstract-view.js';
 import {backButton} from '../controllers/header-screen.js';
-import {StatsIcons} from './stats-icons-view.js';
+import StatsIcons from './stats-icons-view.js';
 
-export class Stats extends AbstractView {
+export default class Stats extends AbstractView {
   constructor(stats) {
     super();
     this.stats = stats;

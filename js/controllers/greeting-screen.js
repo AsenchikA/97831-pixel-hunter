@@ -1,4 +1,4 @@
-import {Greeting} from "../views/greeteng-view";
+import Greeting from "../views/greeteng-view";
 import Router from "../router/application-router";
 
 export default () => {

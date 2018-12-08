@@ -1,12 +1,12 @@
-import {GameScreen1} from '../views/game-1-view.js';
-import {GameScreen2} from '../views/game-2-view.js';
-import {GameScreen3} from '../views/game-3-view.js';
+import GameScreen1 from '../views/game-1-view.js';
+import GameScreen2 from '../views/game-2-view.js';
+import GameScreen3 from '../views/game-3-view.js';
 import getTimer from '../utils/start-time.js';
 import getAnswerEstimate from '../utils/get-estimate.js';
 import Router from '../router/application-router.js';
 import {renderScreen} from '../utils/render.js';
 import countPoints from '../utils/count-points.js';
-import {Timer} from '../views/header-view.js';
+import Timer from '../views/timer-view.js';
 
 export default class GameScreen {
   constructor(gameModel) {
@@ -28,10 +28,10 @@ export default class GameScreen {
         this.gameModel.decreaseTime();
         this.updateTimer();
         this._tickTimer();
-      }, () => this.stopTimer());
+      }, () => this._stopTimer());
     }, 1000);
   }
-  stopTimer() {
+  _stopTimer() {
     this.onGetAnswer(`wrong`);
   }
   updateRoot() {
@@ -64,19 +64,23 @@ export default class GameScreen {
   }
   onGetAnswer(answers) {
     clearInterval(this._timer);
-    const estimate = getAnswerEstimate(answers, this.gameModel.currentLevel.answer, this.gameModel.state);
+    const estimate = getAnswerEstimate(answers, this.gameModel.currentLevel.answer, this.gameModel.state.time);
     this.gameModel.levelEstimate = estimate;
     if (estimate === `wrong`) {
       this.gameModel.decreaseLives();
     }
     if (!this.gameModel.isDead() && this.gameModel.hasNextLevel()) {
-      this.gameModel.nextLevel();
-      this.updateRoot();
-      renderScreen(this.element);
-      this._tickTimer();
+      this.changeLevel();
     } else {
       this.showStatsScreen();
     }
+  }
+  changeLevel() {
+    this.gameModel.nextLevel();
+    this.updateTimer();
+    this.updateRoot();
+    renderScreen(this.element);
+    this._tickTimer();
   }
   showStatsScreen() {
     const {lives, estimates} = this.gameModel.state;

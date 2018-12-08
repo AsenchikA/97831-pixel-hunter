@@ -4,7 +4,7 @@ import greeting from "../controllers/greeting-screen.js";
 import rules from "../controllers/rules-screen.js";
 import GameModel from "../models/game-model.js";
 import GameScreen from "../controllers/game-screen.js";
-import {Stats} from "../views/stats-view.js";
+import Stats from "../views/stats-view.js";
 
 export default class Router {
   static showIntro() {

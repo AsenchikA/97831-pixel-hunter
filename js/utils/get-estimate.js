@@ -1,11 +1,11 @@
-import {TimeToAnswer} from '../data/game-data.js';
+import {TimeToAnswer, GameRules} from '../data/game-data.js';
 const getAnswerEstimate = (answer, rightAnswer, time) => {
   let estimate = `wrong`;
   if (rightAnswer === answer) {
     estimate = `correct`;
-    if (time < TimeToAnswer.FAST) {
+    if (GameRules.MAX_TIME - time < TimeToAnswer.FAST) {
       estimate = `fast`;
-    } else if (time > TimeToAnswer.CORRECT) {
+    } else if (GameRules.MAX_TIME - time > TimeToAnswer.CORRECT) {
       estimate = `slow`;
     }
   }

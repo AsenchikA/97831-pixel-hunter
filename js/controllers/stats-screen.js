@@ -1,4 +1,4 @@
-import {StatsIcons} from "../views/stats-icons-view";
+import StatsIcons from "../views/stats-icons-view";
 
 const statsIcons = (answers) => new StatsIcons(answers);
 

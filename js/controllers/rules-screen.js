@@ -1,4 +1,4 @@
-import {Rules} from "../views/rules-view";
+import Rules from "../views/rules-view";
 import Router from "../router/application-router";
 
 export default () => {

@@ -1,15 +1,14 @@
-import {ButtonHeader, Lives, Timer} from "../views/header-view";
-import Router from "../router/application-router";
+import Lives from "../views/lives-view.js";
+import Router from "../router/application-router.js";
+import BackButton from "../views/back-button-view.js";
 
 const backButton = () => {
-  const headerBtn = new ButtonHeader();
+  const headerBtn = new BackButton();
   headerBtn.onClick = () => Router.showGreeting();
   return headerBtn.element;
 };
 
 const liveCounter = (livesCount) => new Lives(livesCount);
 
-const timer = (time) => new Timer(time);
-
-export {backButton, liveCounter, timer};
+export {backButton, liveCounter};
 

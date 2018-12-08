@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view.js';
 import {backButton} from '../controllers/header-screen.js';
 
-export class Rules extends AbstractView {
+export default class Rules extends AbstractView {
   constructor() {
     super();
   }

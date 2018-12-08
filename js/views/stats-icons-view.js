@@ -1,7 +1,7 @@
 import {GameRules} from "../data/game-data.js";
 import AbstractView from "./abstract-view.js";
 
-export class StatsIcons extends AbstractView {
+export default class StatsIcons extends AbstractView {
   constructor(estimates) {
     super();
     this.estimates = estimates;

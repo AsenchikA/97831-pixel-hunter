@@ -1,8 +1,8 @@
 import AbstractView from './abstract-view.js';
 import {backButton, liveCounter} from '../controllers/header-screen.js';
-import {StatsIcons} from './stats-icons-view.js';
+import StatsIcons from './stats-icons-view.js';
 
-export class GameScreen2 extends AbstractView {
+export default class GameScreen2 extends AbstractView {
   constructor(option, lives, estimates) {
     super();
     this.option = option;
