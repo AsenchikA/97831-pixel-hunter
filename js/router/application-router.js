@@ -11,11 +11,11 @@ let gameData;
 
 export default class Router {
   static showIntro() {
+    Loader.loadData()
+            .then((data) => (gameData = data));
     renderScreen(intro().element);
   }
   static showGreeting() {
-    Loader.loadData()
-            .then((data) => (gameData = data));
     renderScreen(greeting().element);
   }
   static showRules() {
