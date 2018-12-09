@@ -20,14 +20,13 @@ export default class GameScreen {
   init() {
     this.gameModel.restart();
     this.updateRoot();
-    this._tickTimer();
+    this._startTimer();
   }
-  _tickTimer() {
-    this._timer = setTimeout(() => {
+  _startTimer() {
+    this._timer = setInterval(() => {
       getTimer(this.gameModel.state.time, () => {
         this.gameModel.decreaseTime();
         this.updateTimer();
-        this._tickTimer();
       }, () => this._stopTimer());
     }, 1000);
   }
@@ -80,7 +79,7 @@ export default class GameScreen {
     this.updateTimer();
     this.updateRoot();
     renderScreen(this.element);
-    this._tickTimer();
+    this._startTimer();
   }
   showStatsScreen() {
     const {lives, estimates} = this.gameModel.state;

@@ -16,9 +16,6 @@ export default class GameModel {
   set levelEstimate(estimate) {
     this._state.estimates.push(estimate);
   }
-  tick() {
-    this._state = createTimer.tick();
-  }
   isDead() {
     return this._state.lives <= 0;
   }

@@ -1,20 +1,23 @@
-import intro from "../controllers/intro-screen.js";
 import {renderScreen} from "../utils/render.js";
-import greeting from "../controllers/greeting-screen.js";
-import rules from "../controllers/rules-screen.js";
 import GameModel from "../models/game-model.js";
 import GameScreen from "../controllers/game-screen.js";
 import Stats from "../views/stats-view.js";
+import GreetingScreen from "../controllers/greeting-screen.js";
+import RulesScreen from "../controllers/rules-screen.js";
+import IntroScreen from "../controllers/intro-screen.js";
 
 export default class Router {
   static showIntro() {
-    renderScreen(intro().element);
+    const introScreen = new IntroScreen();
+    renderScreen(introScreen.element);
   }
   static showGreeting() {
-    renderScreen(greeting().element);
+    const greetingScreen = new GreetingScreen();
+    renderScreen(greetingScreen.element);
   }
   static showRules() {
-    renderScreen(rules().element);
+    const rulesScreen = new RulesScreen();
+    renderScreen(rulesScreen.element);
   }
 
   static showGame(userName) {
