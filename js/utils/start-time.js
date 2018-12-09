@@ -13,11 +13,19 @@ const createTimer = (delay, tickCallback = () => { }, timerEndCallback = () => {
 
   let time = delay;
 
-  if (time >= 0) {
-    tickCallback();
-  } else {
-    timerEndCallback();
-  }
+  return {
+    tick() {
+      if (time >= 0) {
+        time--;
+        tickCallback();
+      } else {
+        timerEndCallback();
+      }
+    },
+    get time() {
+      return time;
+    }
+  };
 };
 
 export default createTimer;

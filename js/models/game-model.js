@@ -1,6 +1,5 @@
 import {INITIAL_GAME_STATE, LevelData, GameRules} from "../data/game-data";
 import changeLevel from "../utils/change-level";
-import createTimer from "../utils/start-time";
 
 export default class GameModel {
   constructor(playerName) {

@@ -23,12 +23,11 @@ export default class GameScreen {
     this._startTimer();
   }
   _startTimer() {
-    this._timer = setInterval(() => {
-      getTimer(this.gameModel.state.time, () => {
-        this.gameModel.decreaseTime();
-        this.updateTimer();
-      }, () => this._stopTimer());
-    }, 1000);
+    const timer = getTimer(this.gameModel.state.time, () => {
+      this.gameModel.decreaseTime();
+      this.updateTimer();
+    }, () => this._stopTimer());
+    this._timer = setInterval(() => timer.tick(), 1000);
   }
   _stopTimer() {
     this.onGetAnswer(`wrong`);
