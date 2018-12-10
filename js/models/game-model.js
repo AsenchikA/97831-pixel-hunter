@@ -1,6 +1,5 @@
 import {INITIAL_GAME_STATE, GameRules} from "../data/game-data";
 import changeLevel from "../utils/change-level";
-import createTimer from "../utils/start-time";
 
 export default class GameModel {
   constructor(gameData, playerName) {
@@ -16,9 +15,6 @@ export default class GameModel {
   }
   set levelEstimate(estimate) {
     this._state.estimates.push(estimate);
-  }
-  tick() {
-    this._state = createTimer.tick();
   }
   isDead() {
     return this._state.lives <= 0;
