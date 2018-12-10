@@ -46,7 +46,7 @@ const LevelData = [
   {
     type: `gameScreen1`,
     options: [Images.paintings[0], Images.photos[0]],
-    answer: [`photo`, `paint`]
+    answer: `photo, paint`
   },
   {
     type: `gameScreen2`,
@@ -61,7 +61,7 @@ const LevelData = [
   {
     type: `gameScreen1`,
     options: [Images.paintings[1], Images.photos[1]],
-    answer: [`photo`, `paint`]
+    answer: `photo, paint`
   },
   {
     type: `gameScreen2`,
@@ -76,7 +76,7 @@ const LevelData = [
   {
     type: `gameScreen1`,
     options: [Images.paintings[2], Images.photos[2]],
-    answer: [`photo`, `paint`]
+    answer: `photo, paint`
   },
   {
     type: `gameScreen2`,
@@ -91,15 +91,15 @@ const LevelData = [
   {
     type: `gameScreen1`,
     options: [Images.paintings[2], Images.photos[2]],
-    answer: [`photo`, `paint`]
+    answer: `photo, paint`
   }
 ];
 
 const INITIAL_GAME_STATE = {
   level: 1,
   lives: 3,
-  time: 0,
-  answers: []
+  time: 30,
+  estimates: []
 };
 
 const gameState = Object.assign({}, INITIAL_GAME_STATE);

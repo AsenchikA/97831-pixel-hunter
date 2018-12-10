@@ -1,18 +1,18 @@
 import AbstractView from './abstract-view.js';
-import {backButton, liveCounter, timer} from '../components/header.js';
-import {statsIcons} from '../components/stats.js';
+import {backButton, liveCounter} from '../controllers/header-screen.js';
+import StatsIcons from './stats-icons-view.js';
 
-export class GameScreen3 extends AbstractView {
-  constructor(options, gameState) {
+export default class GameScreen3 extends AbstractView {
+  constructor(options, lives, estimates) {
     super();
     this.options = options;
-    this.gameState = gameState;
+    this.lives = lives;
+    this.estimates = estimates;
   }
   get template() {
     return `
     <header class="header">
-    ${timer(30).template}
-    ${liveCounter(this.gameState.lives).template}
+    ${liveCounter(this.lives).template}
     </header>
     <section class="game">
     <p class="game__task">Найдите рисунок среди изображений</p>
@@ -23,7 +23,7 @@ export class GameScreen3 extends AbstractView {
       </div>`
   ))}
     </form>
-    ${statsIcons(this.gameState.answers).template}
+    ${new StatsIcons(this.estimates).template}
     </section>`;
   }
   bind() {
