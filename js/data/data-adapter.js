@@ -1,23 +1,25 @@
 const preprocessAnswers = (answers, type) => {
-  const options = [];
-  let rightAnswer = [];
+  const imagesTypes = answers.map((answer) => answer.type);
+  const options = answers.map((answer) => answer.image);
+
   if (type === `one-of-three`) {
-    if (answers[0].type === answers[1].type) {
-      rightAnswer = `Option 3`;
+    if (imagesTypes[0] === imagesTypes[1]) {
+      return {
+        rightAnswer: `Option 3`,
+        options
+      };
     } else {
-      rightAnswer = answers[0].type === answers[2].type ? `Option 2` : `Option 1`;
+      return {
+        rightAnswer: imagesTypes[0] === imagesTypes[2] ? `Option 2` : `Option 1`,
+        options
+      };
     }
-    answers.forEach((answerItem) => {
-      options.push(answerItem.image);
-    });
   } else {
-    answers.forEach((answerItem) => {
-      rightAnswer.push(answerItem.type);
-      options.push(answerItem.image);
-    });
-    rightAnswer = rightAnswer.join(`, `);
+    return {
+      rightAnswer: imagesTypes.join(`, `),
+      options
+    };
   }
-  return {rightAnswer, options};
 };
 
 export const adaptServerData = (data) => {

@@ -2,10 +2,10 @@ import {renderScreen} from "../utils/render.js";
 import GameModel from "../models/game-model.js";
 import GameScreen from "../controllers/game-screen.js";
 import Loader from "../utils/loader.js";
-import Stats from "../views/stats-view.js";
 import GreetingScreen from "../controllers/greeting-screen.js";
 import RulesScreen from "../controllers/rules-screen.js";
 import IntroScreen from "../controllers/intro-screen.js";
+import StatsScreen from "../controllers/stats-screen.js";
 
 
 let gameData;
@@ -34,7 +34,7 @@ export default class Router {
   }
 
   static showStats(stats) {
-    const statistics = new Stats(stats);
+    const statistics = new StatsScreen(stats);
     renderScreen(statistics.element);
   }
 
