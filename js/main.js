@@ -1,4 +1,3 @@
-import {renderScreen} from './utils/render.js';
-import intro from './components/intro.js';
+import Router from './router/application-router.js';
 
-renderScreen(intro().element);
+Router.showIntro();

@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view.js';
-import {backButton} from '../components/header.js';
+import {backButton} from '../controllers/header-screen.js';
 
-export class Rules extends AbstractView {
+export default class Rules extends AbstractView {
   constructor() {
     super();
   }
@@ -30,9 +30,10 @@ export class Rules extends AbstractView {
 
   bind() {
     const rulesButton = this.element.querySelector(`.rules__button`);
+    const playerNameInput = this.element.querySelector(`input`);
     rulesButton.addEventListener(`click`, (event) => {
       event.preventDefault();
-      this.onContinue();
+      this.onContinue(playerNameInput.value);
     });
 
     const rulesInput = this.element.querySelector(`.rules__input`);
