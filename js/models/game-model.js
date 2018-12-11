@@ -1,8 +1,9 @@
-import {INITIAL_GAME_STATE, LevelData, GameRules} from "../data/game-data";
+import {INITIAL_GAME_STATE, GameRules} from "../data/game-data";
 import changeLevel from "../utils/change-level";
 
 export default class GameModel {
-  constructor(playerName) {
+  constructor(gameData, playerName) {
+    this.gameData = gameData;
     this.playerName = playerName;
     this.restart();
   }
@@ -10,7 +11,7 @@ export default class GameModel {
     return this._state;
   }
   get currentLevel() {
-    return LevelData[this._state.level - 1];
+    return this.gameData[this._state.level - 1];
   }
   set levelEstimate(estimate) {
     this._state.estimates.push(estimate);

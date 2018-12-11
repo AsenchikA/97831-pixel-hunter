@@ -1,5 +1,4 @@
 import AbstractView from './abstract-view.js';
-import {backButton} from '../controllers/header-screen.js';
 
 export default class Rules extends AbstractView {
   constructor() {
@@ -45,12 +44,6 @@ export default class Rules extends AbstractView {
         rulesButton.setAttribute(`disabled`, true);
       }
     });
-  }
-  render() {
-    const wrapper = super.render();
-    const header = wrapper.querySelector(`.header`);
-    header.insertBefore(backButton(), header.children[0]);
-    return wrapper;
   }
   onContinue() {
   }

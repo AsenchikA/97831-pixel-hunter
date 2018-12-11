@@ -7,6 +7,7 @@ import Router from '../router/application-router.js';
 import {renderScreen} from '../utils/render.js';
 import countPoints from '../utils/count-points.js';
 import Timer from '../views/timer-view.js';
+import {backButton} from './header-screen.js';
 
 export default class GameScreen {
   constructor(gameModel) {
@@ -30,11 +31,12 @@ export default class GameScreen {
     this._timer = setInterval(() => timer.tick(), 1000);
   }
   _stopTimer() {
-    this.onGetAnswer(`wrong`);
+    this.onGetAnswer(``);
   }
   updateRoot() {
     this.root = this.getGameScreen(this.gameModel.currentLevel.type);
     this.rootHeader = this.root.querySelector(`.header`);
+    this.rootHeader.insertBefore(backButton(), this.rootHeader.children[0]);
     this.rootHeader.insertBefore(this.timerElement, this.rootHeader.children[1]);
   }
   updateTimer() {
@@ -43,18 +45,18 @@ export default class GameScreen {
     this.timerElement = timerElement;
   }
   getGameScreen(type) {
-    const {options} = this.gameModel.currentLevel;
+    const {question, options} = this.gameModel.currentLevel;
     const {lives, estimates} = this.gameModel.state;
     let screen = {};
     switch (type) {
-      case `gameScreen1`:
-        screen = new GameScreen1(options, lives, estimates);
+      case `two-of-two`:
+        screen = new GameScreen1(question, options, lives, estimates);
         break;
-      case `gameScreen2`:
-        screen = new GameScreen2(options, lives, estimates);
+      case `tinder-like`:
+        screen = new GameScreen2(question, options, lives, estimates);
         break;
-      case `gameScreen3`:
-        screen = new GameScreen3(options, lives, estimates);
+      case `one-of-three`:
+        screen = new GameScreen3(question, options, lives, estimates);
         break;
     }
     screen.onContinue = (answers) => this.onGetAnswer(answers);
@@ -62,7 +64,7 @@ export default class GameScreen {
   }
   onGetAnswer(answers) {
     clearInterval(this._timer);
-    const estimate = getAnswerEstimate(answers, this.gameModel.currentLevel.answer, this.gameModel.state.time);
+    const estimate = getAnswerEstimate(answers, this.gameModel.currentLevel.rightAnswer, this.gameModel.state.time);
     this.gameModel.levelEstimate = estimate;
     if (estimate === `wrong`) {
       this.gameModel.decreaseLives();

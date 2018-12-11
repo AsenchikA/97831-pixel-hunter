@@ -1,33 +1,36 @@
 import AbstractView from './abstract-view.js';
-import {backButton, liveCounter} from '../controllers/header-screen.js';
 import StatsIcons from './stats-icons-view.js';
+import Lives from './lives-view.js';
 
 export default class GameScreen2 extends AbstractView {
-  constructor(option, lives, estimates) {
+  constructor(question, options, lives, estimates) {
     super();
-    this.option = option;
+    this.question = question;
+    this.options = options;
     this.lives = lives;
     this.estimates = estimates;
   }
   get template() {
     return `
     <header class="header">
-    ${liveCounter(this.lives).template}
+    ${new Lives(this.lives).template}
     </header>
     <section class="game">
-    <p class="game__task">Угадай, фото или рисунок?</p>
+    <p class="game__task">${this.question}</p>
     <form class="game__content  game__content--wide">
-      <div class="game__option">
-        <img src=${this.option} alt="Option 1" width="705" height="455">
+    ${this.options.map((option, optionIndex) => (
+    `<div class="game__option">
+        <img src=${option.url} alt="Option 1" width=${option.width} height=${option.height}>
         <label class="game__answer  game__answer--photo">
-          <input class="visually-hidden" name="question1" type="radio" value="photo">
+          <input class="visually-hidden" name="question${optionIndex + 1}" type="radio" value="photo">
           <span>Фото</span>
         </label>
         <label class="game__answer  game__answer--paint">
-          <input class="visually-hidden" name="question1" type="radio" value="paint">
+          <input class="visually-hidden" name="question${optionIndex + 1}" type="radio" value="painting">
           <span>Рисунок</span>
         </label>
-      </div>
+      </div>`
+  ))}
     </form>
     ${new StatsIcons(this.estimates).template}
     </section>`;
@@ -38,12 +41,6 @@ export default class GameScreen2 extends AbstractView {
     gameForm.addEventListener(`change`, () => {
       this.onContinue(event.target.value);
     });
-  }
-  render() {
-    const wrapper = super.render();
-    const header = wrapper.querySelector(`.header`);
-    header.insertBefore(backButton(), header.children[0]);
-    return wrapper;
   }
   onContinue() {
 
