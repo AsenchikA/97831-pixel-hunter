@@ -38,6 +38,6 @@ describe(`Check time changer`, () => {
     testTimer.tick();
     testTimer.tick();
     testTimer.tick();
-    assert.equal(testTimer.time, -1);
+    assert.equal(testTimer.time, 0);
   });
 });
