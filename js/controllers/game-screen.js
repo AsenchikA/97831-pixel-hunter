@@ -7,7 +7,7 @@ import Router from '../router/application-router.js';
 import {renderScreen} from '../utils/render.js';
 import countPoints from '../utils/count-points.js';
 import Timer from '../views/timer-view.js';
-import {backButton} from './header-screen.js';
+import BackButton from './back-button-screen.js';
 
 export default class GameScreen {
   constructor(gameModel) {
@@ -36,12 +36,12 @@ export default class GameScreen {
   updateRoot() {
     this.root = this.getGameScreen(this.gameModel.currentLevel.type);
     this.rootHeader = this.root.querySelector(`.header`);
-    this.rootHeader.insertBefore(backButton(), this.rootHeader.children[0]);
+    this.rootHeader.insertBefore(new BackButton().element, this.rootHeader.children[0]);
     this.rootHeader.insertBefore(this.timerElement, this.rootHeader.children[1]);
   }
   updateTimer() {
     const timerElement = new Timer(this.gameModel.state.time).element;
-    this.rootHeader.replaceChild(this.timerElement, this.rootHeader.children[1]);
+    this.rootHeader.replaceChild(timerElement, this.rootHeader.children[1]);
     this.timerElement = timerElement;
   }
   getGameScreen(type) {
@@ -85,7 +85,7 @@ export default class GameScreen {
   showStatsScreen() {
     const {lives, estimates} = this.gameModel.state;
     const stats = countPoints(estimates, lives);
-    const isSuccessGame = Boolean(stats.total !== -1);
+    const isSuccessGame = stats.total !== -1;
     Router.showStats(stats, isSuccessGame, this.gameModel.playerName);
   }
 }

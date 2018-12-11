@@ -15,7 +15,7 @@ describe(`Check time changer`, () => {
 
   it(`should not allow set invalid value`, () => {
     assert.throws(() => startTimer(105), /Time should not more max number/);
-    assert.throws(() => startTimer(-2), /Time should not be negative value/);
+    assert.throws(() => startTimer(-1), /Time should not be negative value/);
   });
 
   it(`should not allow set not correct value`, () => {
