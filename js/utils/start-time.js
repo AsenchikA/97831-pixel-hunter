@@ -7,7 +7,7 @@ const createTimer = (delay, tickCallback = () => { }, timerEndCallback = () => {
   if (delay > GameRules.MAX_TIME) {
     throw new Error(`Time should not more max number`);
   }
-  if (delay < -1) {
+  if (delay < 0) {
     throw new Error(`Time should not be negative value`);
   }
 
@@ -15,7 +15,7 @@ const createTimer = (delay, tickCallback = () => { }, timerEndCallback = () => {
 
   return {
     tick() {
-      if (time >= 0) {
+      if (time > 0) {
         time--;
         tickCallback();
       } else {
