@@ -1,7 +1,7 @@
 import AbstractView from './abstract-view.js';
 import StatsIcons from './stats-icons-view.js';
 import Lives from './lives-view.js';
-import cropImages from '../utils/crop-images.js';
+import resize from '../utils/resize.js';
 
 export default class GameScreen2 extends AbstractView {
   constructor(question, options, lives, estimates) {
@@ -46,9 +46,9 @@ export default class GameScreen2 extends AbstractView {
     const image = gameForm.querySelector(`.game__option img`);
 
     image.addEventListener(`load`, () => {
-      const newSize = cropImages([image]);
-      image.width = newSize[0].width;
-      image.height = newSize[0].height;
+      const newSizes = resize({width: image.width, height: image.height}, {width: image.naturalWidth, height: image.naturalHeight});
+      image.width = newSizes.width;
+      image.height = newSizes.height;
     });
   }
   onContinue() {
