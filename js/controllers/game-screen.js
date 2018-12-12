@@ -21,7 +21,7 @@ export default class GameScreen {
   init() {
     this.gameModel.restart();
     this.updateRoot();
-    // this._startTimer();
+    this._startTimer();
   }
   _startTimer() {
     const timer = getTimer(this.gameModel.state.time, () => {
@@ -80,7 +80,7 @@ export default class GameScreen {
     this.updateTimer();
     this.updateRoot();
     renderScreen(this.element);
-    // this._startTimer();
+    this._startTimer();
   }
   showStatsScreen() {
     const {lives, estimates} = this.gameModel.state;
