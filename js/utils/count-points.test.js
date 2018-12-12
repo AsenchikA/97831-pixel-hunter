@@ -3,7 +3,7 @@ import countPoints from './count-points.js';
 
 describe(`Check counting points`, () => {
   it(`should count points`, () => {
-    assert.equal(countPoints([
+    let estimates = [
       `correct`,
       `correct`,
       `correct`,
@@ -13,9 +13,23 @@ describe(`Check counting points`, () => {
       `correct`,
       `correct`,
       `correct`,
-      `correct`],
-    1), 1050);
-    assert.equal(countPoints([
+      `correct`];
+    assert.deepEqual(countPoints(estimates, 1), {
+      estimates,
+      lives: {
+        count: 1,
+        point: 50
+      },
+      fastAnswers: {
+        count: 0,
+        point: 0
+      },
+      slowAnswers: {
+        count: 0,
+        point: 0
+      },
+      total: 1050});
+    estimates = [
       `fast`,
       `fast`,
       `fast`,
@@ -25,9 +39,23 @@ describe(`Check counting points`, () => {
       `fast`,
       `fast`,
       `fast`,
-      `fast`],
-    2), 1600);
-    assert.equal(countPoints([
+      `fast`];
+    assert.deepEqual(countPoints(estimates, 2), {
+      estimates,
+      lives: {
+        count: 2,
+        point: 100
+      },
+      fastAnswers: {
+        count: 10,
+        point: 500
+      },
+      slowAnswers: {
+        count: 0,
+        point: 0
+      },
+      total: 1600});
+    estimates = [
       `slow`,
       `slow`,
       `slow`,
@@ -37,9 +65,23 @@ describe(`Check counting points`, () => {
       `slow`,
       `slow`,
       `slow`,
-      `slow`],
-    2), 600);
-    assert.equal(countPoints([
+      `slow`];
+    assert.deepEqual(countPoints(estimates, 2), {
+      estimates,
+      lives: {
+        count: 2,
+        point: 100
+      },
+      fastAnswers: {
+        count: 0,
+        point: 0
+      },
+      slowAnswers: {
+        count: 10,
+        point: 500
+      },
+      total: 600});
+    estimates = [
       `wrong`,
       `wrong`,
       `wrong`,
@@ -49,21 +91,38 @@ describe(`Check counting points`, () => {
       `wrong`,
       `wrong`,
       `wrong`,
-      `wrong`],
-    2), 100);
+      `wrong`];
+    assert.deepEqual(countPoints(estimates, 2), {
+      estimates,
+      lives: {
+        count: 2,
+        point: 100
+      },
+      fastAnswers: {
+        count: 0,
+        point: 0
+      },
+      slowAnswers: {
+        count: 0,
+        point: 0
+      },
+      total: 100});
   });
 
   it(`should not allow set invalid value`, () => {
-    assert.equal(countPoints([
+    let estimates = [
       `slow`,
       `slow`,
       `slow`,
       `slow`,
       `slow`,
       `slow`,
-      `slow`],
-    2), -1);
-    assert.equal(countPoints([
+      `slow`];
+    assert.deepEqual(countPoints(estimates, 2), {
+      estimates,
+      total: -1
+    });
+    estimates = [
       `slow`,
       `slow`,
       `slow`,
@@ -73,8 +132,11 @@ describe(`Check counting points`, () => {
       `slow`,
       `slow`,
       `slow`,
-      `slow`],
-    0), -1);
+      `slow`];
+    assert.deepEqual(countPoints(estimates, 0), {
+      estimates,
+      total: -1
+    });
   });
 
   it(`should not allow set not correct value`, () => {

@@ -3,6 +3,7 @@ import startTimer from './start-time.js';
 
 
 describe(`Check time changer`, () => {
+
   const testTimer = startTimer(10, () => {}, () => {});
 
   testTimer.tick();
@@ -14,7 +15,7 @@ describe(`Check time changer`, () => {
 
   it(`should not allow set invalid value`, () => {
     assert.throws(() => startTimer(105), /Time should not more max number/);
-    assert.throws(() => startTimer(-1), /Time should not be negative value/);
+    assert.throws(() => startTimer(-2), /Time should not be negative value/);
   });
 
   it(`should not allow set not correct value`, () => {
@@ -37,6 +38,6 @@ describe(`Check time changer`, () => {
     testTimer.tick();
     testTimer.tick();
     testTimer.tick();
-    assert.equal(testTimer.time, 0);
+    assert.equal(testTimer.time, -1);
   });
 });
