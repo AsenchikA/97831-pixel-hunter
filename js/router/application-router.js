@@ -33,9 +33,10 @@ export default class Router {
     renderScreen(gameScreen.element);
   }
 
-  static showStats(stats) {
-    const statistics = new StatsScreen(stats);
-    renderScreen(statistics.element);
+  static showStats(stats, isSuccessGame, playerName) {
+    Loader.saveResult(playerName, stats)
+      .then(() => Loader.loadStats(playerName))
+      .then((data) => renderScreen(new StatsScreen(data, isSuccessGame).element));
   }
 
 }
