@@ -4,16 +4,16 @@ const resize = (frame, image) => {
 
   let imageWidth = image.width;
   let imageHeight = image.height;
-  const imageProportion = imageWidth / imageHeight;
 
-  if (imageWidth === imageHeight) {
-    const isLandscapeContainer = requiredWidth >= requiredHeight;
-    imageWidth = isLandscapeContainer ? Math.floor(requiredHeight * imageProportion) : requiredWidth;
-    imageHeight = isLandscapeContainer ? requiredHeight : Math.floor(requiredWidth / imageProportion);
+  const imageProportion = imageWidth / imageHeight;
+  const frameProportion = requiredWidth / requiredHeight;
+
+  if (frameProportion >= imageProportion) {
+    imageHeight = requiredHeight;
+    imageWidth = Math.floor(requiredHeight * imageProportion);
   } else {
-    const isLandscapeImage = imageWidth >= imageHeight;
-    imageHeight = isLandscapeImage ? Math.floor(requiredWidth / imageProportion) : requiredHeight;
-    imageWidth = isLandscapeImage ? requiredWidth : Math.floor(requiredHeight * imageProportion);
+    imageWidth = requiredWidth;
+    imageHeight = Math.floor(requiredWidth / imageProportion);
   }
 
   return {width: imageWidth, height: imageHeight};
