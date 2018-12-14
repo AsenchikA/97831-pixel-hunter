@@ -1,6 +1,7 @@
 import AbstractView from './abstract-view.js';
 import StatsIcons from './stats-icons-view.js';
 import Lives from './lives-view.js';
+import resize from '../utils/resize.js';
 
 export default class GameScreen2 extends AbstractView {
   constructor(question, options, lives, estimates) {
@@ -40,6 +41,14 @@ export default class GameScreen2 extends AbstractView {
 
     gameForm.addEventListener(`change`, () => {
       this.onContinue(event.target.value);
+    });
+
+    const image = gameForm.querySelector(`.game__option img`);
+
+    image.addEventListener(`load`, () => {
+      const newSizes = resize({width: image.width, height: image.height}, {width: image.naturalWidth, height: image.naturalHeight});
+      image.width = newSizes.width;
+      image.height = newSizes.height;
     });
   }
   onContinue() {

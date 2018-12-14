@@ -1,6 +1,7 @@
 import AbstractView from './abstract-view.js';
 import StatsIcons from './stats-icons-view.js';
 import Lives from './lives-view.js';
+import resize from '../utils/resize.js';
 
 export default class GameScreen3 extends AbstractView {
   constructor(question, options, lives, estimates) {
@@ -35,6 +36,16 @@ export default class GameScreen3 extends AbstractView {
         const answer = event.target.getAttribute(`alt`);
         this.onContinue(answer);
       }
+    });
+
+    const images = Array.from(gameForm.querySelectorAll(`.game__option img`));
+
+    images.forEach((image) => {
+      image.addEventListener(`load`, () => {
+        const newSizes = resize({width: image.width, height: image.height}, {width: image.naturalWidth, height: image.naturalHeight});
+        image.width = newSizes.width;
+        image.height = newSizes.height;
+      });
     });
   }
   onContinue() {
