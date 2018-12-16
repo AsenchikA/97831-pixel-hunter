@@ -1,4 +1,4 @@
-import {adaptServerData} from "../data/data-adapter";
+import {adaptServerData} from "../data/data-adapter.js";
 
 const URL = `https://es.dump.academy/pixel-hunter`;
 const APP_ID = 451984296;
@@ -27,11 +27,11 @@ export default class Loader {
       },
       method: `POST`
     };
-    return fetch(`${URL}/stats/:${APP_ID}-:${name}`, requestSettings)
+    return fetch(`${URL}/stats/${APP_ID}-${name}`, requestSettings)
             .then(checkResponse);
   }
   static loadStats(name) {
-    return fetch(`${URL}/stats/:${APP_ID}-:${name}`)
+    return fetch(`${URL}/stats/${APP_ID}-${name}`)
             .then(checkResponse)
             .then((response) => response.json());
   }
