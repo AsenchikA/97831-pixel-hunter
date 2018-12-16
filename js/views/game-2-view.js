@@ -39,7 +39,7 @@ export default class GameScreen2 extends AbstractView {
   bind() {
     const gameForm = this.element.querySelector(`form`);
 
-    gameForm.addEventListener(`change`, () => {
+    gameForm.addEventListener(`change`, (event) => {
       this.onContinue(event.target.value);
     });
 

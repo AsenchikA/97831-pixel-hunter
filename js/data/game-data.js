@@ -20,7 +20,4 @@ const INITIAL_GAME_STATE = {
   estimates: []
 };
 
-const gameState = Object.assign({}, INITIAL_GAME_STATE);
-
-
-export {GameRules, INITIAL_GAME_STATE, gameState, TimeToAnswer};
+export {GameRules, INITIAL_GAME_STATE, TimeToAnswer};

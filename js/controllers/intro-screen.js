@@ -1,5 +1,5 @@
-import Intro from "../views/intro-view";
-import Router from "../router/application-router";
+import Intro from "../views/intro-view.js";
+import Router from "../router/application-router.js";
 
 export default class IntroScreen {
   get element() {

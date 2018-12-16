@@ -1,5 +1,5 @@
-import {INITIAL_GAME_STATE, GameRules} from "../data/game-data";
-import changeLevel from "../utils/change-level";
+import {INITIAL_GAME_STATE, GameRules} from "../data/game-data.js";
+import changeLevel from "../utils/change-level.js";
 
 export default class GameModel {
   constructor(gameData, playerName) {

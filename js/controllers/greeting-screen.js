@@ -1,5 +1,5 @@
-import Greeting from "../views/greeteng-view";
-import Router from "../router/application-router";
+import Greeting from "../views/greeteng-view.js";
+import Router from "../router/application-router.js";
 
 export default class GreetingScreen {
   get element() {
