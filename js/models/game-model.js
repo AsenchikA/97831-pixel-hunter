@@ -17,7 +17,7 @@ export default class GameModel {
     this._state.estimates.push(estimate);
   }
   isDead() {
-    return this._state.lives <= 0;
+    return this._state.lives < 0;
   }
   hasNextLevel() {
     return this._state.level + 1 <= GameRules.MAX_LEVEL;

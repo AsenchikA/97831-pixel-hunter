@@ -8,6 +8,7 @@ import {renderScreen} from '../utils/render.js';
 import countPoints from '../utils/count-points.js';
 import Timer from '../views/timer-view.js';
 import BackButton from './back-button-screen.js';
+import {GameRules} from '../data/game-data.js';
 
 export default class GameScreen {
   constructor(gameModel) {
@@ -41,6 +42,9 @@ export default class GameScreen {
   }
   updateTimer() {
     const timerElement = new Timer(this.gameModel.state.time).element;
+    if (this.gameModel.state.time <= GameRules.DANGEROUS_TIME) {
+      timerElement.classList.add(`timer--blink`);
+    }
     this.rootHeader.replaceChild(timerElement, this.rootHeader.children[1]);
     this.timerElement = timerElement;
   }
